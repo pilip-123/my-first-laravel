@@ -15,13 +15,13 @@ class CategoryController extends Controller
     {
         // row query
         // $categories = DB::select('SELECT * FROM categories');
-        
+
         // query builder
         // $categories = DB::table('categories')->get();
-        
+
         //Eloquent ORM
         $categories = Category::orderBy('id', 'desc')->get();
-        return view('categories.list',compact('categories'));
+        return view('categories.list', compact('categories'));
     }
 
     /**
@@ -29,7 +29,7 @@ class CategoryController extends Controller
      */
     public function store()
     {
-         Category::create(
+        Category::create(
             [
                 'name' => request()->name,
                 'desc' => request()->desc,
@@ -45,13 +45,13 @@ class CategoryController extends Controller
         return view('categories.create');
     }
 
-    public function edit($id)
+    public function edit(string $id)
     {
         $category = Category::find($id);
         return view('categories.edit', compact('category'));
     }
 
-     public function update($id)
+    public function update(string $id)
     {
         // dd($id);
         // dd(request()->all());
@@ -65,7 +65,7 @@ class CategoryController extends Controller
         );
         return redirect('/categories');
     }
-    public function destroy($id)
+    public function destroy(string $id)
     {
         // dd($id);
         $category = Category::find($id);

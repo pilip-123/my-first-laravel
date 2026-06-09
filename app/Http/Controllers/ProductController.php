@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -11,7 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products');
+        $products = Product::with('category')->orderByDesc('id')->get();
+        return view('products.list', compact('products'));
     }
 
     /**
@@ -19,15 +22,26 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::orderBy('name')->get();
+        return view('products.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $validated = request()->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'desc' => ['required', 'string'],
+            'price' => ['required', 'numeric'],
+            'qty' => ['required', 'integer'],
+            'category_id' => ['required', 'exists:categories,id'],
+        ]);
+
+        Product::create($validated);
+
+        return redirect('/products');
     }
 
     /**
@@ -43,15 +57,29 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $categories = Category::orderBy('name')->get();
+        return view('products.edit', compact('product', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $validated = request()->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'desc' => ['required', 'string'],
+            'price' => ['required', 'numeric'],
+            'qty' => ['required', 'integer'],
+            'category_id' => ['required', 'exists:categories,id'],
+        ]);
+
+        $product->update($validated);
+
+        return redirect('/products');
     }
 
     /**
@@ -59,6 +87,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect('/products');
     }
-}
+};

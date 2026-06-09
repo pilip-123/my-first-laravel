@@ -8,12 +8,12 @@
     <title>Document</title>
 </head>
 <style>
-    .container{
+    .container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-content: center;
-        background-color: blueviolet ;
+        background-color: blueviolet;
         width: 500px;
         height: 40vh;
         border-radius: 14px;
@@ -23,20 +23,20 @@
 
     }
 
-    .container h2{
+    .container h2 {
         margin: auto;
     }
 
-    .container li{
-        text-decoration: none ;
+    .container li {
+        text-decoration: none;
         margin: auto;
-        font: 32px ;
+        font: 32px;
         font-weight: bold;
     }
 
     li a {
-        text-decoration: none ;
-        color: white ;
+        text-decoration: none;
+        color: white;
     }
 </style>
 
