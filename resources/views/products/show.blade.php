@@ -8,19 +8,19 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <p>{{ $product->name }}</p>
+                        <p> Name : {{ $product->name }}</p>
                     </div>
                     <div class="col-md-12">
-                        <p>{{ $product->desc }}</p>
+                        <p> Description : {{ $product->desc }}</p>
                     </div>
                     <div class="col-md-12">
-                        <p>{{ $product->price }}</p>
+                        <p> Price : {{ $product->price }}</p>
                     </div>
                     <div class="col-md-12">
-                        <p>{{ $product->qty }}</p>
+                        <p> Qaulity : {{ $product->qty }}</p>
                     </div>
                     <div class="col-md-12">
-                        <p>{{ $product->category?->name }}</p>
+                        <p> Type : {{ $product->category?->name }}</p>
                     </div>
                 </div>
             </div>
