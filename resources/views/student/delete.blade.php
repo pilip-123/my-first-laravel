@@ -12,7 +12,7 @@
                                   aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                              Are you sure to delete this category?
+                              Are you sure to delete this student?
                           </div>
                           <div class="modal-footer">
                               <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>

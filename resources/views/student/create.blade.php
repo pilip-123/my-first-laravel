@@ -18,7 +18,7 @@
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone Number:</label>
                         <div class="form-floating">
-                            <textarea name="phone" style="height: 150px"class="form-control" id="phone"></textarea>
+                            <input name="phone" type="number" step="0.01" class="form-control" id="phone">
                             <label for="phone">Phone Number</label>
                         </div>
                     </div>
