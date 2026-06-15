@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,3 +61,10 @@ Route::post('/products', [ProductController::class, 'store'])->name('products.st
 Route::get('/products/{id}', [ProductController::class, 'edit'])->name('products.edit');
 Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
 Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+// student route:
+Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
+Route::post('/student', [StudentController::class, 'store'])->name('student.store');
+Route::get('/student/{id}', [StudentController::class, 'edit'])->name('student.edit');
+Route::put('/student/{id}', [StudentController::class, 'update'])->name('student.update');
+Route::delete('/student/{id}', [StudentController::class, 'destroy'])->name('student.destroy');

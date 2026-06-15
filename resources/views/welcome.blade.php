@@ -48,6 +48,7 @@
         <li><a href="{{route('categories.index')}}">Categories</a></li>
         <li><a href="{{route('customers.index')}}">Customers</a></li>
         <li><a href="{{route('movies.index')}}">Movies</a></li>
+        <li><a href="{{route('student.index')}}">Student</a></li>
     </ul>
 </body>
 
