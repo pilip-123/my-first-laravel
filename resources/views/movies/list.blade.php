@@ -1,35 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<body>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>name</th>
-                <th>date</th>
-                <th>desc</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($movies as $index => $movie)
+@extends('Layouts.app')
+@section('content')
+    <div class="container">
+        <a href="{{ route('movies.create') }}" class="btn btn-info mb-3">Create +</a>
 
-            <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $movie->name }}</td>
-                    <td>{{ $movie->date }}</td>
-                    <td>{{ $movie->desc }}</td>
-            </tr>
-                
-            @endforeach
-        </tbody>
-    </table>
-</body>
-</html>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>name</th>
+                    <th>date</th>
+                    <th>desc</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach ($movies as $index => $movie)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $movie->name }}</td>
+                        <td>{{ $movie->date }}</td>
+                        <td>{{ $movie->desc }}</td>
+                        <td>
+                            <a href="{{ route('movies.show', $movie->id) }}">View</a>
+                            |
+                            <a href="{{ route('movies.edit', $movie->id) }}">Edit</a>
+                            |
+                            <form action="{{ route('movies.destroy', $movie->id) }}" method="POST" style="display:inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-link p-0"
+                                    onclick="return confirm('Delete this movie?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection

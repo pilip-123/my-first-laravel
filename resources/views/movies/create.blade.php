@@ -1,33 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Movie</title>
-</head>
-
-<body>
-    <h1>Create Movie</h1>
-
-    <form method="POST" action="{{ route('movies.store') }}">
-        @csrf
-        <div>
-            <label for="title">Title</label>
-            <input id="title" name="title" type="text" value="{{ old('title') }}" required />
+@extends('Layouts.app')
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <form action="{{ route('categories.store') }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input name ="name" type="text" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price:</label>
+                        <input name="price" type="number" step="0.01" class="form-control" id="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="desc" class="form-label">Descrition</label>
+                        <div class="form-floating">
+                            <textarea name="desc" style="height: 150px"class="form-control" id="desc"></textarea>
+                            <label for="desc">Descrition</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
         </div>
-
-        <div>
-            <label for="release_year">Release Year</label>
-            <input id="release_year" name="release_year" type="number" value="{{ old('release_year') }}" />
-        </div>
-
-        <div>
-            <button type="submit">Save</button>
-        </div>
-    </form>
-
-    <p><a href="{{ route('movies.index') }}">Back to list</a></p>
-</body>
-
-</html>
+    </div>
+@endsection

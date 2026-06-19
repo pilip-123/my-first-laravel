@@ -1,23 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Details</title>
-</head>
-
-<body>
-    <h1>Movie Details</h1>
-
-    <p><strong>Title:</strong> {{ $movie->title }}</p>
-    <p><strong>Release Year:</strong> {{ $movie->release_year }}</p>
-
-    <p>
-        <a href="{{ route('movies.edit', $movie->id) }}">Edit</a>
-        |
-        <a href="{{ route('movies.index') }}">Back to list</a>
-    </p>
-</body>
-
-</html>
+<div class="modal fade" id="showCategories{{ $category->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Categories Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p> Name : {{ $category->name }}</p>
+                    </div>
+                    <div class="col-md-12">
+                        <p> Description : {{ $category->desc }}</p>
+                    </div>
+                    <div class="col-md-12">
+                        <p> Price : {{ $category->price }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

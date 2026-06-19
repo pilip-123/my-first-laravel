@@ -44,7 +44,10 @@ Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show')->
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
-Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
+
+// movies CRUD
+Route::resource('movies', MovieController::class);
+
 
 // category route:
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');

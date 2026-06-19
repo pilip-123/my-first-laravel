@@ -1,36 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Movie</title>
-</head>
-
-<body>
-    <h1>Edit Movie</h1>
-
-    <form method="POST" action="{{ route('movies.update', $movie->id) }}">
-        @csrf
-        @method('PUT')
-
-        <div>
-            <label for="title">Title</label>
-            <input id="title" name="title" type="text" value="{{ old('title', $movie->title) }}" required />
+@extends('Layouts.app')
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <form action="{{ route('categories.update', $category->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input name ="name" value = "{{ $category->name }}" type="text" class="form-control"
+                            id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price:</label>
+                        <input name="price" value="{{ $category->price }}" type="number" step="0.01"
+                            class="form-control" id="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="desc" class="form-label">Descrition</label>
+                        <div class="form-floating">
+                            <textarea name="desc" style="height: 150px"class="form-control" id="dec">{{ $category->desc }}</textarea>
+                            <label for="desc">Descrition</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
         </div>
-
-        <div>
-            <label for="release_year">Release Year</label>
-            <input id="release_year" name="release_year" type="number"
-                value="{{ old('release_year', $movie->release_year) }}" />
-        </div>
-
-        <div>
-            <button type="submit">Update</button>
-        </div>
-    </form>
-
-    <p><a href="{{ route('movies.index') }}">Back to list</a></p>
-</body>
-
-</html>
+    </div>
+@endsection

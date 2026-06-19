@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Delete Movie</title>
-</head>
-
-<body>
-    <h1>Delete Movie</h1>
-
-    <p>Are you sure you want to delete:</p>
-    <p><strong>{{ $movie->title }}</strong> ({{ $movie->release_year }})</p>
-
-    <form method="POST" action="{{ route('movies.destroy', $movie->id) }}">
-        @csrf
-        @method('DELETE')
-
-        <button type="submit">Yes, delete</button>
-        <a href="{{ route('movies.index') }}">Cancel</a>
-    </form>
-</body>
-
-</html>
+  <div class="modal fade" id="deleteCategory{{ $category->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+          <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
+              @csrf
+              @method('DELETE')
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      Are you sure to delete this category?
+                  </div>
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
