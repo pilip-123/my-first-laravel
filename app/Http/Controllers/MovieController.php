@@ -13,7 +13,7 @@ class MovieController extends Controller
     public function index()
     {
         $movies = Movie::all();
-        return view('movies.list',compact('movies'));
+        return view('movies.list', compact('movies'));
     }
 
     /**
@@ -21,7 +21,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        return view('movies.create');
     }
 
     /**
@@ -29,7 +29,15 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'date' => ['nullable', 'string', 'max:255'],
+            'desc' => ['nullable', 'string'],
+        ]);
+
+        Movie::create($data);
+
+        return redirect()->route('movies.index')->with('success', 'Movie created');
     }
 
     /**
@@ -37,7 +45,8 @@ class MovieController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $movie = Movie::findOrFail($id);
+        return view('movies.view', compact('movie'));
     }
 
     /**
@@ -45,7 +54,8 @@ class MovieController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $movie = Movie::findOrFail($id);
+        return view('movies.edit', compact('movie'));
     }
 
     /**
@@ -53,7 +63,17 @@ class MovieController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $movie = Movie::findOrFail($id);
+
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'date' => ['nullable', 'string', 'max:255'],
+            'desc' => ['nullable', 'string'],
+        ]);
+
+        $movie->update($data);
+
+        return redirect()->route('movies.index')->with('success', 'Movie updated');
     }
 
     /**
@@ -61,6 +81,9 @@ class MovieController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $movie = Movie::findOrFail($id);
+        $movie->delete();
+
+        return redirect()->route('movies.index')->with('success', 'Movie deleted');
     }
 }

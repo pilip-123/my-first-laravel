@@ -26,14 +26,14 @@
                             |
                             <a href="{{ route('movies.edit', $movie->id) }}">Edit</a>
                             |
-                            <form action="{{ route('movies.destroy', $movie->id) }}" method="POST" style="display:inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-link p-0"
-                                    onclick="return confirm('Delete this movie?')">Delete</button>
-                            </form>
+                            <button class="btn btn-link p-0" data-bs-toggle="modal"
+                                data-bs-target="#deleteMovie{{ $movie->id }}">
+                                Delete
+                            </button>
                         </td>
                     </tr>
+
+                    @include('movies.delete', ['movie' => $movie])
                 @endforeach
             </tbody>
         </table>
